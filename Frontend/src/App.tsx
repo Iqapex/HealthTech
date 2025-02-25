@@ -52,8 +52,8 @@ function App() {
         <Routes>
           {/* Public routes */}
           <Route element={<PublicRoute />}>
-            <Route path="//verify-email/:confirmationCode" element={<VerifyEmail />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/verify-email/:confirmationCode" element={<VerifyEmail />} />
             <Route path="/signup" element={<SignUp />} />
           </Route>
 

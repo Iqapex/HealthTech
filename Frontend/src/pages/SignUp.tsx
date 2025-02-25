@@ -24,7 +24,13 @@ export default function SignUp() {
 
     try {
       const response = await fetchData('/auth/register', 'POST', {
-        body: { firstName, lastName, email, password, userType },
+        body: {
+          firstname: firstName,
+          lastname: lastName,
+          emailId: email,
+          password,
+          isLawyer: userType === 'lawyer' // Match backend schema
+        },
       });
 
       if (response) {

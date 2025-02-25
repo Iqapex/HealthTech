@@ -15,11 +15,11 @@ export default function Login() {
 
     try {
       const response = await fetchData('/auth/login', 'POST', {
-        body: { email, password },
+        body: { emailId: email, password },
       });
 
       if (response) {
-        navigate('/dashboard'); // Redirect to dashboard after successful login
+        navigate('/home'); // Redirect to dashboard after successful login
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Login failed. Please try again.');

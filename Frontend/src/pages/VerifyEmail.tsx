@@ -12,7 +12,7 @@ const VerifyEmail = () => {
     useEffect(() => {
         const verifyEmail = async () => {
             try {
-                await fetchData(`/verify-email/${confirmationCode}`, 'GET');
+                await fetchData(`/auth/confirm/${confirmationCode}`, 'GET');
                 setMessage('Email verified successfully!');
                 setTimeout(() => {
                     navigate('/login'); // Redirect to login after verification
