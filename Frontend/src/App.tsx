@@ -12,6 +12,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import GetPremium from './pages/GetPremium';
 import VerifyEmail from './pages/VerifyEmail';
+import LawyerProfile from './pages/LawyerProfile ';
 
 const isAuthenticated = () => {
   return localStorage.getItem('authToken') !== null;
@@ -52,19 +53,26 @@ function App() {
         <Routes>
           {/* Public routes */}
           <Route element={<PublicRoute />}>
-            <Route path="/login" element={<Login />} />
+            {/* <Route path="/login" element={<Login />} />
             <Route path="/verify-email/:confirmationCode" element={<VerifyEmail />} />
-            <Route path="/signup" element={<SignUp />} />
+            <Route path="/signup" element={<SignUp />} /> */}
+            <Route path="/home" element={<><Navbar /><Home /><Footer /></>} />
+            <Route path="/getpremium" element={<><Navbar /><GetPremium /><Footer /></>} />
+            <Route path="/contacts" element={<><Navbar /><Contacts /><Footer /></>} />
+            <Route path="/lawyer/:name" element={<><Navbar /><LawyerProfile /><Footer /></>} />
+            <Route path="/search" element={<><Navbar /><Search /><Footer /></>} />
+            <Route path="/cloud" element={<><Navbar /><Cloud /><Footer /></>} />
+            <Route path="/messages" element={<><Navbar /><Messages /><Footer /></>} />
           </Route>
 
           {/* Protected routes */}
           <Route element={<ProtectedRoute />}>
-            <Route path="/home" element={<><Navbar /><Home /><Footer /></>} />
+            {/* <Route path="/home" element={<><Navbar /><Home /><Footer /></>} />
             <Route path="/getpremium" element={<><Navbar /><GetPremium /><Footer /></>} />
             <Route path="/contacts" element={<><Navbar /><Contacts /><Footer /></>} />
             <Route path="/search" element={<><Navbar /><Search /><Footer /></>} />
             <Route path="/cloud" element={<><Navbar /><Cloud /><Footer /></>} />
-            <Route path="/messages" element={<><Navbar /><Messages /><Footer /></>} />
+            <Route path="/messages" element={<><Navbar /><Messages /><Footer /></>} /> */}
           </Route>
 
           {/* Root path handling */}

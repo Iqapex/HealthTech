@@ -43,7 +43,7 @@ export default function Navbar() {
           <div className="flex items-center space-x-6">
             {/* Main Navigation Links */}
             <div className="flex items-center space-x-5">
-              <NavLink to="/" icon={<Home className="w-5 h-5" />} isActive={isActive('/')} />
+              <NavLink to="/home" icon={<Home className="w-5 h-5" />} isActive={isActive('/')} />
               <NavLink to="/contacts" icon={<Users className="w-5 h-5" />} isActive={isActive('/contacts')} />
               <NavLink to="/search" icon={<Search className="w-5 h-5" />} isActive={isActive('/search')} />
               <NavLink to="/cloud" icon={<Cloud className="w-5 h-5" />} isActive={isActive('/cloud')} />
@@ -57,7 +57,7 @@ export default function Navbar() {
             </button>
 
             {/* Auth Links */}
-            <div className="flex items-center space-x-4 border-l pl-6 ml-4 border-gray-200">
+            {/* <div className="flex items-center space-x-4 border-l pl-6 ml-4 border-gray-200">
               <Link 
                 to="/login" 
                 className={`text-gray-600 hover:text-indigo-600 transition-colors ${
@@ -72,7 +72,7 @@ export default function Navbar() {
               >
                 Sign Up
               </Link>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
