@@ -13,6 +13,7 @@ import Footer from './components/Footer';
 import GetPremium from './pages/GetPremium';
 import VerifyEmail from './pages/VerifyEmail';
 import LawyerProfile from './pages/LawyerProfile ';
+import Feed from './pages/Feed';
 
 const isAuthenticated = () => {
   return localStorage.getItem('authToken') !== null;
@@ -57,6 +58,7 @@ function App() {
             <Route path="/verify-email/:confirmationCode" element={<VerifyEmail />} />
             <Route path="/signup" element={<SignUp />} /> */}
             <Route path="/home" element={<><Navbar /><Home /><Footer /></>} />
+            <Route path="/feed" element={<><Navbar /><Feed /><Footer /></>} />
             <Route path="/getpremium" element={<><Navbar /><GetPremium /><Footer /></>} />
             <Route path="/contacts" element={<><Navbar /><Contacts /><Footer /></>} />
             <Route path="/lawyer/:name" element={<><Navbar /><LawyerProfile /><Footer /></>} />
