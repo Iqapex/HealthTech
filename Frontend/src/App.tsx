@@ -54,10 +54,15 @@ function App() {
         <Routes>
           {/* Public routes */}
           <Route element={<PublicRoute />}>
-            {/* <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/verify-email/:confirmationCode" element={<VerifyEmail />} />
-            <Route path="/signup" element={<SignUp />} /> */}
-            <Route path="/home" element={<><Navbar /><Home /><Footer /></>} />
+            <Route path="/signup" element={<SignUp />} />
+            
+          </Route>
+
+          {/* Protected routes */}
+          <Route element={<ProtectedRoute />}>
+          <Route path="/home" element={<><Navbar /><Home /><Footer /></>} />
             <Route path="/feed" element={<><Navbar /><Feed /><Footer /></>} />
             <Route path="/getpremium" element={<><Navbar /><GetPremium /><Footer /></>} />
             <Route path="/contacts" element={<><Navbar /><Contacts /><Footer /></>} />
@@ -65,16 +70,6 @@ function App() {
             <Route path="/search" element={<><Navbar /><Search /><Footer /></>} />
             <Route path="/cloud" element={<><Navbar /><Cloud /><Footer /></>} />
             <Route path="/messages" element={<><Navbar /><Messages /><Footer /></>} />
-          </Route>
-
-          {/* Protected routes */}
-          <Route element={<ProtectedRoute />}>
-            {/* <Route path="/home" element={<><Navbar /><Home /><Footer /></>} />
-            <Route path="/getpremium" element={<><Navbar /><GetPremium /><Footer /></>} />
-            <Route path="/contacts" element={<><Navbar /><Contacts /><Footer /></>} />
-            <Route path="/search" element={<><Navbar /><Search /><Footer /></>} />
-            <Route path="/cloud" element={<><Navbar /><Cloud /><Footer /></>} />
-            <Route path="/messages" element={<><Navbar /><Messages /><Footer /></>} /> */}
           </Route>
 
           {/* Root path handling */}

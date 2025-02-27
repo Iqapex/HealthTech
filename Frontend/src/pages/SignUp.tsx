@@ -1,7 +1,9 @@
+// pages/SignUp.tsx
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Scale, Mail, Lock, User } from 'lucide-react';
-import { useApi } from '../hooks/useApi'; // Import the useApi hook
+import { useApi } from '../hooks/useApi';
+import { Notification } from '../components/Notification';
 
 export default function SignUp() {
   const [firstName, setFirstName] = useState('');
@@ -10,7 +12,9 @@ export default function SignUp() {
   const [password, setPassword] = useState('');
   const [userType, setUserType] = useState('client');
   const [acceptTerms, setAcceptTerms] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [notifications, setNotifications] = useState<
+    { id: number; message: string; type: 'success' | 'error' }[]
+  >([]);
   const navigate = useNavigate();
   const { fetchData, loading } = useApi();
 
@@ -18,7 +22,10 @@ export default function SignUp() {
     e.preventDefault();
 
     if (!acceptTerms) {
-      setError('You must accept the terms and conditions.');
+      setNotifications(prev => [
+        ...prev,
+        { id: Date.now(), message: 'You must accept the terms and conditions.', type: 'error' }
+      ]);
       return;
     }
 
@@ -29,15 +36,23 @@ export default function SignUp() {
           lastname: lastName,
           emailId: email,
           password,
-          isLawyer: userType === 'lawyer' // Match backend schema
+          isLawyer: userType === 'lawyer'
         },
       });
 
       if (response) {
-        navigate('/login'); // Redirect to login after successful signup
+        setNotifications(prev => [
+          ...prev,
+          { id: Date.now(), message: 'Signup successful! Please check your email.', type: 'success' }
+        ]);
+        navigate('/verify-email');
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Signup failed. Please try again.');
+      const errorMessage = err instanceof Error ? err.message : 'Signup failed. Please try again.';
+      setNotifications(prev => [
+        ...prev,
+        { id: Date.now(), message: errorMessage, type: 'error' }
+      ]);
     }
   };
 
@@ -48,11 +63,7 @@ export default function SignUp() {
           <Scale className="h-12 w-12 text-indigo-600" />
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign Up</h2>
         </div>
-        {error && (
-          <div className="text-red-500 text-center text-sm">
-            {error}
-          </div>
-        )}
+        
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="rounded-md shadow-sm space-y-4">
             <div className="grid grid-cols-2 gap-4">
@@ -124,7 +135,7 @@ export default function SignUp() {
               className="appearance-none rounded-lg px-4 py-2 border border-gray-300 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm w-32"
             >
               <option value="client">Client</option>
-              <option value="user">User</option>
+              <option value="lawyer">Lawyer</option>
             </select>
           </div>
 
@@ -147,6 +158,18 @@ export default function SignUp() {
             </Link>
           </div>
         </form>
+
+        {/* Notification Container */}
+        <div className="fixed bottom-4 right-4 space-y-2">
+          {notifications.map(notification => (
+            <Notification
+              key={notification.id}
+              message={notification.message}
+              type={notification.type}
+              onClose={() => setNotifications(prev => prev.filter(n => n.id !== notification.id))}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
