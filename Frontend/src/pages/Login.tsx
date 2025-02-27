@@ -12,17 +12,27 @@ export default function Login() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError(null);
+  
     try {
-      const response = await fetchData('/auth/login', 'POST', {
-        body: { emailId: email, password },
-      });
+      const response = await fetchData<{ emailId: string; password: string }, any>(
+        '/auth/login',
+        'POST',
+        {
+          body: { emailId: email, password },
+        }
+      );
+  
       if (response) {
-        navigate('/home'); // Redirect to dashboard after successful login
+        // Store user data in context/state management
+        navigate('/home');
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Login failed. Please try again.');
+      const error = err as Error;
+      setError(error.message || 'Login failed. Please check your credentials and try again.');
     }
   };
+
   return (
     <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-lg">
@@ -60,6 +70,7 @@ export default function Login() {
               />
             </div>
           </div>
+
           <div className="flex items-center justify-between">
             <div className="text-sm">
               <Link to="/forgot-password" className="font-medium text-indigo-600 hover:text-indigo-500">
@@ -67,6 +78,7 @@ export default function Login() {
               </Link>
             </div>
           </div>
+
           <button
             type="submit"
             disabled={loading}
@@ -74,6 +86,7 @@ export default function Login() {
           >
             {loading ? 'Logging in...' : 'Log in'}
           </button>
+
           <div className="text-center text-sm">
             Don't have an Account?{' '}
             <Link to="/signup" className="font-medium text-indigo-600 hover:text-indigo-500">

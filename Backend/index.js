@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const fileUpload = require("express-fileupload");
 const cors = require("cors");
+const cookieParser = require('cookie-parser');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -17,6 +18,7 @@ app.use(cors({
 app.use(express.json()); // Parse JSON bodies
 app.use(morgan("common")); // Logging
 app.use(helmet()); // Security headers
+app.use(cookieParser());
 app.use(fileUpload()); // File upload handling
 
 // Database Connection
