@@ -12,9 +12,10 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-    origin: "http://localhost:5173", // Or your frontend port
-    credentials: true,
-  }));
+  origin: "http://localhost:5173",
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization'] // Add required headers
+}));
 app.use(express.json()); // Parse JSON bodies
 app.use(morgan("common")); // Logging
 app.use(helmet()); // Security headers

@@ -1,13 +1,3 @@
-const authMiddleware = (req, res, next) => {
-    const token = req.cookies.authToken;
-    if (!token) return res.status(401).json({ message: "Not authenticated" });
-  
-    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-      if (err) return res.status(403).json({ message: "Invalid token" });
-      req.user = user;
-      next();
-    });
-  };
   
   const authRouter = require('express').Router();
   const User = require('../models/User');
@@ -87,14 +77,15 @@ const authMiddleware = (req, res, next) => {
           const { password, ...userData } = user._doc;
   
           res
-            .status(200)
-            .cookie('authToken', token, { 
-                httpOnly: true, 
-                secure: process.env.NODE_ENV === 'production',
-                sameSite: 'strict',
-                maxAge: 86400000 // 1 day in ms
-            })
-            .json(userData);
+          .status(200)
+          .cookie('authToken', token, {
+            httpOnly: true,
+            secure: false, // For localhost development
+            sameSite: 'lax', // For cross-origin in development
+            maxAge: 86400000,
+            path: '/'
+          })
+            .json({ message: 'Successfully logged in' });
       } catch (err) {
           res.status(500).json({ message: 'Server error' });
       }
@@ -106,7 +97,7 @@ const authMiddleware = (req, res, next) => {
         .clearCookie('authToken', {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict'
+            sameSite: 'lax'
         })
         .status(200)
         .json({ message: 'Successfully logged out' });
