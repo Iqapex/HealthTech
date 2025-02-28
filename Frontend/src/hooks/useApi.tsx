@@ -24,7 +24,7 @@ export const useApi = <T = unknown, R = unknown>(baseUrl: string = import.meta.e
       const url = `${baseUrl}${endpoint}`;
       const headers = {
         'Content-Type': 'application/json',
-        ...options?.headers
+        ...(options?.headers || {})
       };
 
       const config: RequestInit = {

@@ -77,15 +77,14 @@
           const { password, ...userData } = user._doc;
   
           res
-          .status(200)
-          .cookie('authToken', token, {
-            httpOnly: true,
-            secure: false, // For localhost development
-            sameSite: 'lax', // For cross-origin in development
-            maxAge: 86400000,
-            path: '/'
-          })
-            .json({ message: 'Successfully logged in' });
+            .status(200)
+            .cookie('authToken', token, { 
+                httpOnly: true, 
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: 'strict',
+                maxAge: 86400000 // 1 day in ms
+            })
+            .json({token,userData});
       } catch (err) {
           res.status(500).json({ message: 'Server error' });
       }

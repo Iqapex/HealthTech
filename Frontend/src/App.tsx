@@ -14,20 +14,28 @@ import GetPremium from './pages/GetPremium';
 import VerifyEmail from './pages/VerifyEmail';
 import LawyerProfile from './pages/LawyerProfile ';
 import Feed from './pages/Feed';
+import { useState, useEffect } from 'react';
 
-const isAuthenticated = () => {
-  return localStorage.getItem('authToken') !== null;
-};
 
-const ProtectedRoute = () => {
-  return isAuthenticated() ? <Outlet /> : <Navigate to="/login" replace />;
-};
-
-const PublicRoute = () => {
-  return isAuthenticated() ? <Navigate to="/home" replace /> : <Outlet />;
-};
 
 function App() {
+  const isAuthenticated = () => {
+    return localStorage.getItem('authToken') !== null;
+  };
+  const [isAuth, setIsAuth] = useState(false);
+  const ProtectedRoute = () => {
+    return isAuth ? <Outlet /> : <Navigate to="/login" replace />;
+  };
+  
+  const PublicRoute = () => {
+    return isAuthenticated() ? <Navigate to="/home" replace /> : <Outlet />;
+  };
+  useEffect(() => {
+    const checkAuth = () => setIsAuth(isAuthenticated());
+    window.addEventListener("storage", checkAuth);
+  
+    return () => window.removeEventListener("storage", checkAuth);
+  }, []);
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-gray-50">
@@ -54,7 +62,7 @@ function App() {
         <Routes>
           {/* Public routes */}
           <Route element={<PublicRoute />}>
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
             <Route path="/verify-email/:confirmationCode" element={<VerifyEmail />} />
             <Route path="/signup" element={<SignUp />} />
             
