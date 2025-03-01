@@ -15,31 +15,34 @@ import VerifyEmail from './pages/VerifyEmail';
 import LawyerProfile from './pages/LawyerProfile ';
 import Feed from './pages/Feed';
 import { useState, useEffect } from 'react';
-
-
+import ProfileInfo from './pages/ProfileInfo';
 
 function App() {
   const isAuthenticated = () => {
     return localStorage.getItem('authToken') !== null;
   };
-  const [isAuth, setIsAuth] = useState(false);
+  
+  // Initialize isAuth based on current authentication status
+  const [isAuth, setIsAuth] = useState(isAuthenticated());
+  
   const ProtectedRoute = () => {
     return isAuth ? <Outlet /> : <Navigate to="/login" replace />;
   };
   
   const PublicRoute = () => {
-    return isAuthenticated() ? <Navigate to="/home" replace /> : <Outlet />;
+    return isAuth ? <Navigate to="/home" replace /> : <Outlet />;
   };
+  
   useEffect(() => {
     const checkAuth = () => setIsAuth(isAuthenticated());
+    // Update auth status when localStorage changes
     window.addEventListener("storage", checkAuth);
-  
     return () => window.removeEventListener("storage", checkAuth);
   }, []);
+
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-gray-50">
-        {/* Navigation that's always visible */}
         <nav className="bg-white shadow-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div className="flex items-center">
@@ -47,7 +50,8 @@ function App() {
               <span className="ml-2 text-2xl font-bold text-gray-900">GOLICIT</span>
             </div>
             <div className="flex items-center space-x-4">
-              {!isAuthenticated() ? (
+              {/* Use isAuth state for conditional rendering */}
+              {!isAuth ? (
                 <>
                   <Link to="/login" className="text-gray-700 hover:text-gray-900">LOG IN</Link>
                   <Link to="/signup" className="bg-gray-800 text-white px-6 py-2 rounded-md hover:bg-gray-700 transition-colors">SIGN UP</Link>
@@ -60,17 +64,18 @@ function App() {
         </nav>
 
         <Routes>
-          {/* Public routes */}
+          {/* Public routes - only accessible when not authenticated */}
           <Route element={<PublicRoute />}>
             <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
             <Route path="/verify-email/:confirmationCode" element={<VerifyEmail />} />
             <Route path="/signup" element={<SignUp />} />
-            
+            <Route path='/' element={<LandingPage />} />
           </Route>
 
-          {/* Protected routes */}
+          {/* Protected routes - only accessible when authenticated */}
           <Route element={<ProtectedRoute />}>
-          <Route path="/home" element={<><Navbar /><Home /><Footer /></>} />
+            <Route path="/home" element={<><Navbar /><Home /><Footer /></>} />
+            <Route path="/profile-info" element={<><Navbar /><ProfileInfo /><Footer /></>} />
             <Route path="/feed" element={<><Navbar /><Feed /><Footer /></>} />
             <Route path="/getpremium" element={<><Navbar /><GetPremium /><Footer /></>} />
             <Route path="/contacts" element={<><Navbar /><Contacts /><Footer /></>} />
@@ -80,12 +85,8 @@ function App() {
             <Route path="/messages" element={<><Navbar /><Messages /><Footer /></>} />
           </Route>
 
-          {/* Root path handling */}
-          <Route path="/" element={
-            isAuthenticated() ? 
-            <Navigate to="/home" replace /> : 
-            <LandingPage />
-          } />
+          {/* Catch-all route for undefined paths */}
+          <Route path="*" element={<Navigate to={isAuth ? "/home" : "/"} />} />
         </Routes>
       </div>
     </BrowserRouter>
