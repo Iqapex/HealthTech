@@ -1,16 +1,25 @@
-const mongoose = require('mongoose');
+const messageRouter = require("express").Router();
+const Message = require("../models/Message");
 
-
-const MessageSchema = new mongoose.Schema({
-    conversationId: {
-        type: String,
-    },
-    senderId: {
-        type: String,
-    },
-    text: {
-        type: String,
+//create a message
+messageRouter.post("/", async (req, res) => {
+    const newMess = new Message(req.body);
+    try {
+        const savedMess = await newMess.save();
+        res.status(200).json(savedMess);
+    } catch (err) {
+        res.status(500).json(err);
     }
-}, { timestamps: true });
+})
 
-module.exports = mongoose.model("Message", MessageSchema);
+//get messages
+messageRouter.get("/:conversationId", async (req, res) => {
+    try {
+        const messages = await Message.find({ conversationId: req.params.conversationId });
+        res.status(200).json(messages);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+})
+
+module.exports = messageRouter;
