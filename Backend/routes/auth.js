@@ -96,7 +96,7 @@
         .clearCookie('authToken', {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'lax'
+            sameSite: 'strict'
         })
         .status(200)
         .json({ message: 'Successfully logged out' });

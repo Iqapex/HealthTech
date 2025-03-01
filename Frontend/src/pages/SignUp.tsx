@@ -1,6 +1,6 @@
 // pages/SignUp.tsx
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Scale, Mail, Lock, User } from 'lucide-react';
 import { useApi } from '../hooks/useApi';
 import { Notification } from '../components/Notification';
@@ -15,7 +15,6 @@ export default function SignUp() {
   const [notifications, setNotifications] = useState<
     { id: number; message: string; type: 'success' | 'error' }[]
   >([]);
-  const navigate = useNavigate();
   const { fetchData, loading } = useApi();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -45,7 +44,6 @@ export default function SignUp() {
           ...prev,
           { id: Date.now(), message: 'Signup successful! Please check your email.', type: 'success' }
         ]);
-        navigate('/verify-email');
       }
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Signup failed. Please try again.';
@@ -74,7 +72,7 @@ export default function SignUp() {
                   required
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
-                  className="appearance-none rounded-lg relative block w-full px-10 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  className="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                   placeholder="First Name"
                 />
               </div>
@@ -84,7 +82,7 @@ export default function SignUp() {
                   required
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
-                  className="appearance-none rounded-lg relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  className="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                   placeholder="Last Name"
                 />
               </div>
@@ -96,7 +94,7 @@ export default function SignUp() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="appearance-none rounded-lg relative block w-full px-10 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Email ID"
               />
             </div>
@@ -107,7 +105,7 @@ export default function SignUp() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="appearance-none rounded-lg relative block w-full px-10 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                className="w-full pl-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Password"
               />
             </div>
