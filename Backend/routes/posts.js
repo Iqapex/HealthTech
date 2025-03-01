@@ -36,6 +36,7 @@ postRouter.post('/', async (req, res) => {
         file.mv(movePath, err => {
             if (err) {
                 console.log("File upload error: " + err)
+                res.status(500).json({ error: "File upload failed" });
             } else {
                 savePost()
             }
@@ -44,10 +45,6 @@ postRouter.post('/', async (req, res) => {
     else {
         savePost();
     }
-
-
-
-
 });
 
 //update a post

@@ -56,50 +56,83 @@
   });
   
   // Login Route
-  authRouter.post('/login', async (req, res) => {
-      try {
-          const user = await User.findOne({ emailId: req.body.emailId });
-          if (!user) return res.status(404).json({ message: "Invalid credentials" });
+authRouter.post('/login', async (req, res) => {
+    try {
+      const user = await User.findOne({ emailId: req.body.emailId });
+      if (!user) return res.status(404).json({ message: "Invalid credentials" });
   
-          if (user.status !== "Active") {
-              return res.status(401).json({ message: "Please verify your email!" });
-          }
-  
-          const validPassword = await bcrypt.compare(req.body.password, user.password);
-          if (!validPassword) return res.status(400).json({ message: "Invalid credentials" });
-  
-          const token = jwt.sign(
-              { id: user._id, isLawyer: user.isLawyer },
-              process.env.JWT_SECRET,
-              { expiresIn: '1d' }
-          );
-  
-          const { password, ...userData } = user._doc;
-  
-          res
-            .status(200)
-            .cookie('authToken', token, { 
-                httpOnly: true, 
-                secure: process.env.NODE_ENV === 'production',
-                sameSite: 'strict',
-                maxAge: 86400000 // 1 day in ms
-            })
-            .json({token,userData});
-      } catch (err) {
-          res.status(500).json({ message: 'Server error' });
+      if (user.status !== "Active") {
+        return res.status(401).json({ message: "Please verify your email!" });
       }
+  
+      const validPassword = await bcrypt.compare(req.body.password, user.password);
+      if (!validPassword) return res.status(400).json({ message: "Invalid credentials" });
+  
+      // Add this line to extract user data
+      const { password, refreshToken, ...userData } = user._doc;
+  
+      const accessToken = jwt.sign(
+        { id: user._id, isLawyer: user.isLawyer },
+        process.env.JWT_SECRET,
+        { expiresIn: '15m' }
+      );
+  
+      const newRefreshToken = jwt.sign(
+        { id: user._id },
+        process.env.REFRESH_SECRET,
+        { expiresIn: '7d' }
+      );
+  
+      // Update user with new refresh token
+      user.refreshToken = newRefreshToken;
+      await user.save();
+  
+      res.cookie('accessToken', accessToken, { 
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict',
+        maxAge: 900000
+      });
+      
+      res.cookie('refreshToken', newRefreshToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict',
+        maxAge: 604800000
+      });
+  
+      res.status(200).json({ userData });
+    } catch (err) {
+      console.error("Login error:", err);
+      res.status(500).json({ message: 'Server error' });
+    }
   });
   
   // Logout Route
-  authRouter.post('/logout', (req, res) => {
-      res
-        .clearCookie('authToken', {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict'
-        })
-        .status(200)
-        .json({ message: 'Successfully logged out' });
+authRouter.post('/logout', async (req, res) => {
+    const { refreshToken } = req.cookies;
+    
+    // Clear tokens from database
+    if (refreshToken) {
+      await User.findOneAndUpdate(
+        { refreshToken },
+        { $unset: { refreshToken: 1 } }
+      );
+    }
+  
+    res
+      .clearCookie('accessToken', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict'
+      })
+      .clearCookie('refreshToken', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict'
+      })
+      .status(200)
+      .json({ message: 'Successfully logged out' });
   });
   
   module.exports = authRouter;

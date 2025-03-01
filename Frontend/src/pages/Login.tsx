@@ -20,27 +20,23 @@ export default function Login({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-
+  
     try {
-      const response = await fetchData<
-        { emailId: string; password: string },
-        any
-      >("/auth/login", "POST", {
+      const response = await fetchData("/auth/login", "POST", {
         body: { emailId: email, password },
       });
-
+  
       if (response) {
-        // Store user data in context/state management
-        console.log(response);
-        localStorage.setItem("authToken", response.token); // Store token
+        localStorage.setItem("authToken", response.token);
         setIsAuth(true);
         navigate("/home");
       }
     } catch (err) {
       const error = err as Error;
       setError(
-        error.message ||
-          "Login failed. Please check your credentials and try again."
+        error.message.includes("401") 
+          ? "Please verify your email before logging in"
+          : "Invalid credentials"
       );
     }
   };

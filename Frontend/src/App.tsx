@@ -74,15 +74,15 @@ function App() {
 
           {/* Protected routes - only accessible when authenticated */}
           <Route element={<ProtectedRoute />}>
-            <Route path="/home" element={<><Navbar /><Home /><Footer /></>} />
-            <Route path="/profile-info" element={<><Navbar /><ProfileInfo /><Footer /></>} />
-            <Route path="/feed" element={<><Navbar /><Feed /><Footer /></>} />
-            <Route path="/getpremium" element={<><Navbar /><GetPremium /><Footer /></>} />
-            <Route path="/contacts" element={<><Navbar /><Contacts /><Footer /></>} />
-            <Route path="/lawyer/:name" element={<><Navbar /><LawyerProfile /><Footer /></>} />
-            <Route path="/search" element={<><Navbar /><Search /><Footer /></>} />
-            <Route path="/cloud" element={<><Navbar /><Cloud /><Footer /></>} />
-            <Route path="/messages" element={<><Navbar /><Messages /><Footer /></>} />
+          <Route path="/home" element={<><Navbar setIsAuth={setIsAuth} /><Home /><Footer /></>} />
+          <Route path="/profile-info" element={<><Navbar setIsAuth={setIsAuth} /><ProfileInfo /><Footer /></>} />
+            <Route path="/feed" element={<><Navbar setIsAuth={setIsAuth} /><Feed /><Footer /></>} />
+            <Route path="/getpremium" element={<><Navbar setIsAuth={setIsAuth} /><GetPremium /><Footer /></>} />
+            <Route path="/contacts" element={<><Navbar setIsAuth={setIsAuth} /><Contacts /><Footer /></>} />
+            <Route path="/lawyer/:name" element={<><Navbar setIsAuth={setIsAuth} /><LawyerProfile /><Footer /></>} />
+            <Route path="/search" element={<><Navbar setIsAuth={setIsAuth} /><Search /><Footer /></>} />
+            <Route path="/cloud" element={<><Navbar setIsAuth={setIsAuth} /><Cloud /><Footer /></>} />
+            <Route path="/messages" element={<><Navbar setIsAuth={setIsAuth} /><Messages /><Footer /></>} />
           </Route>
 
           {/* Catch-all route for undefined paths */}

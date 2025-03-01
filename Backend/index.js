@@ -12,9 +12,10 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: process.env.CLIENT_URL,
   credentials: true,
-  allowedHeaders: ['Content-Type', 'Authorization'] // Add required headers
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
 }));
 app.use(express.json()); // Parse JSON bodies
 app.use(morgan("common")); // Logging
@@ -31,8 +32,8 @@ mongoose.connect(process.env.MONGO_URI)
 // Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/users', require('./routes/users'));
+app.use('/api/posts', require('./routes/posts'));
  // Authentication routes
-// Add other routes here (e.g., users, posts, etc.)
 
 // Start the server
 app.listen(PORT, () => {

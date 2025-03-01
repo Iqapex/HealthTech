@@ -28,7 +28,6 @@ userRouter.put('/:id', async (req, res) => {
     }
 });
 
-
 //Delete User
 userRouter.delete('/:id', async (req, res) => {
     if (req.body.userId === req.params.id || req.body.isAdmin) {
@@ -43,7 +42,6 @@ userRouter.delete('/:id', async (req, res) => {
     }
 });
 
-
 //Get a User
 userRouter.get('/:id', async (req, res) => {
     try {
@@ -54,7 +52,6 @@ userRouter.get('/:id', async (req, res) => {
         res.status(500).json(err);
     }
 })
-
 
 //Get contacts
 userRouter.get("/contacts/:userId", async (req, res) => {
@@ -79,7 +76,6 @@ userRouter.get("/contacts/:userId", async (req, res) => {
         res.status(500).json(err);
     }
 })
-
 
 //Connect User
 userRouter.put('/:id/requestConnect', async (req, res) => {
@@ -131,7 +127,6 @@ userRouter.put('/:id/acceptConnect', async (req, res) => {
     }
 });
 
-
 //Disconnect User
 userRouter.put('/:id/deleteConnect', async (req, res) => {
     if (req.body.userId != req.params.id) {
@@ -152,7 +147,6 @@ userRouter.put('/:id/deleteConnect', async (req, res) => {
         res.status(403).json("You can't disConnect yourself");
     }
 });
-
 
 // search for lawyers
 userRouter.post(`/search/lawyers`, async (req, res) => {
@@ -208,7 +202,5 @@ userRouter.put(`/rate/:userId`, async (req, res) => {
         res.status(500).json(err);
     }
 })
-
-
 
 module.exports = userRouter;
