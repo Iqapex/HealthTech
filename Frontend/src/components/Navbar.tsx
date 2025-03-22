@@ -9,7 +9,7 @@ import {
   User2,
   Menu,
   X,
-  Leaf,
+  Heart,
 } from "lucide-react";
 import { SlFeed } from "react-icons/sl";
 
@@ -65,12 +65,15 @@ export default function Navbar({ setIsAuth }: NavbarProps) {
   };
 
   return (
-    <nav className="fixed top-0 w-full bg-green-50 shadow-md py-1 z-50">
+    <nav className="fixed top-0 w-full bg-blue-50 shadow-md py-1 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <Link to="/" className="flex items-center space-x-2">
-            <Leaf className="h-8 w-8 text-green-600" />
-            <span className="text-xl font-bold text-gray-900">AgriTech</span>
+        <Link to="/" className="flex items-center space-x-2">
+            <Heart className="h-8 w-8 text-red-600" />
+            <span className="font-bold text-xl md:text-2xl">
+              <span className="text-red-700">AizalIQ</span>
+              <span className="text-blue-600">Studios</span>
+            </span>
           </Link>
 
           <div className="hidden md:flex items-center space-x-6">
@@ -80,8 +83,8 @@ export default function Navbar({ setIsAuth }: NavbarProps) {
                 to={link.to}
                 className={`p-2 rounded-lg transition-all relative ${
                   isActive(link.to)
-                    ? "text-green-600 bg-green-200"
-                    : "text-green-500 hover:text-green-600 hover:bg-green-100"
+                    ? "text-blue-600 bg-blue-200"
+                    : "text-blue-500 hover:text-blue-600 hover:bg-blue-100"
                 }`}
               >
                 <div className="w-6 h-6 flex items-center justify-center">
@@ -122,7 +125,7 @@ export default function Navbar({ setIsAuth }: NavbarProps) {
               <Link
                 key={link.to}
                 to={link.to}
-                className="flex items-center space-x-2 text-gray-700 hover:text-green-600 transition-all"
+                className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 transition-all"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.icon} <span>{link.name}</span>

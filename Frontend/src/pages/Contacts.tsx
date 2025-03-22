@@ -135,7 +135,7 @@ export default function Contacts() {
   if (error) return <div className="text-center text-red-500 p-8">{error}</div>;
 
   return (
-    <div className="min-h-screen bg-green-50 pt-20 px-4">
+    <div className="min-h-screen bg-blue-50 pt-20 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-3 gap-6">
           {/* Pending Requests Column */}
@@ -166,7 +166,7 @@ export default function Contacts() {
                         </div>
                       </div>
                       <div className="flex gap-2">
-                        <button onClick={() => handleAccept(request._id)} className="p-2 rounded-lg bg-green-100 hover:bg-green-200 text-green-600 transition-colors">
+                        <button onClick={() => handleAccept(request._id)} className="p-2 rounded-lg bg-blue-100 hover:bg-blue-200 text-blue-600 transition-colors">
                           <Check className="w-5 h-5" />
                         </button>
                         <button onClick={() => handleDecline(request._id)} className="p-2 rounded-lg bg-red-100 hover:bg-red-200 text-red-600 transition-colors">
@@ -184,7 +184,7 @@ export default function Contacts() {
           <div className="md:col-span-1">
             <div className="bg-white rounded-xl shadow-lg p-6">
               <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-                <UserIcon className="w-5 h-5 text-green-500" />
+                <UserIcon className="w-5 h-5 text-blue-500" />
                 Your Contacts ({filteredContacts.length})
               </h2>
 

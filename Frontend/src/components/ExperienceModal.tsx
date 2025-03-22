@@ -29,34 +29,34 @@ const ExperienceModal: React.FC<ExperienceModalProps> = ({
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg p-6 w-full max-w-md">
-        <h3 className="text-xl font-semibold text-green-700 mb-4 text-center">Experience</h3>
+        <h3 className="text-xl font-semibold text-blue-700 mb-4 text-center">Experience</h3>
 
         <div className="space-y-4">
           <input
             type="text"
             placeholder="Company Name"
-            className="w-full p-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full p-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={formData.companyName}
             onChange={(e) => onChange({ ...formData, companyName: e.target.value })}
           />
           <input
             type="text"
             placeholder="Role"
-            className="w-full p-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full p-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={formData.role}
             onChange={(e) => onChange({ ...formData, role: e.target.value })}
           />
           <input
             type="date"
             placeholder="Start Date"
-            className="w-full p-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full p-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={formData.startDate}
             onChange={(e) => onChange({ ...formData, startDate: e.target.value })}
           />
           <input
             type="date"
             placeholder="End Date"
-            className="w-full p-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full p-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={formData.endDate}
             onChange={(e) => onChange({ ...formData, endDate: e.target.value })}
           />
@@ -70,7 +70,7 @@ const ExperienceModal: React.FC<ExperienceModalProps> = ({
           </label>
           <textarea
             placeholder="Description"
-            className="w-full p-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 min-h-[100px]"
+            className="w-full p-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[100px]"
             value={formData.description}
             onChange={(e) => onChange({ ...formData, description: e.target.value })}
           />
@@ -79,7 +79,7 @@ const ExperienceModal: React.FC<ExperienceModalProps> = ({
         <div className="mt-6">
           <button
             onClick={onSubmit}
-            className="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition"
+            className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition"
           >
             Save
           </button>

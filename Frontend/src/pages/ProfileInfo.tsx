@@ -306,37 +306,37 @@ const ProfileInfo: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-green-100 p-4 pt-24 px-24">
+    <div className="min-h-screen bg-blue-100 p-4 pt-24 px-24">
       <div className="flex flex-col md:flex-row gap-4">
         {/* Left sidebar */}
         <div className="w-full md:w-1/5 bg-white p-4 rounded-lg shadow-sm">
           <div className="flex flex-col items-center mb-4">
-            <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mb-2">
+            <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mb-2">
               <User className="text-white" size={32} />
             </div>
           </div>
           <div className="space-y-2">
-            <div className="flex justify-between items-center text-green-600 py-1 border-b">
+            <div className="flex justify-between items-center text-blue-600 py-1 border-b">
               <span>Introduction</span>
-              <button onClick={() => setShowIntroModal(true)} className="text-green-500">
+              <button onClick={() => setShowIntroModal(true)} className="text-blue-500">
                 <Pencil size={16} />
               </button>
             </div>
-            <div className="flex justify-between items-center text-green-600 py-1 border-b">
+            <div className="flex justify-between items-center text-blue-600 py-1 border-b">
               <span>Education</span>
-              <button onClick={() => setShowEducationModal(true)} className="text-green-500">
+              <button onClick={() => setShowEducationModal(true)} className="text-blue-500">
                 <Pencil size={16} />
               </button>
             </div>
-            <div className="flex justify-between items-center text-green-600 py-1 border-b">
+            <div className="flex justify-between items-center text-blue-600 py-1 border-b">
               <span>Professional</span>
-              <button onClick={() => setShowProfessionalModal(true)} className="text-green-500">
+              <button onClick={() => setShowProfessionalModal(true)} className="text-blue-500">
                 <Pencil size={16} />
               </button>
             </div>
-            <div className="flex justify-between items-center text-green-600 py-1 border-b">
+            <div className="flex justify-between items-center text-blue-600 py-1 border-b">
               <span>Experience</span>
-              <button onClick={() => setShowExperienceModal(true)} className="text-green-500">
+              <button onClick={() => setShowExperienceModal(true)} className="text-blue-500">
                 <Pencil size={16} />
               </button>
             </div>
@@ -349,7 +349,7 @@ const ProfileInfo: React.FC = () => {
           <div className="bg-white p-6 rounded-lg shadow-sm relative">
             <button
               onClick={() => setShowIntroModal(true)}
-              className="absolute top-4 right-4 text-green-500"
+              className="absolute top-4 right-4 text-blue-500"
             >
               <Pencil size={18} />
             </button>
@@ -361,11 +361,11 @@ const ProfileInfo: React.FC = () => {
                   className="w-24 h-24 rounded-full object-cover mb-4"
                 />
               ) : (
-                <div className="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center mb-4">
+                <div className="w-24 h-24 bg-blue-500 rounded-full flex items-center justify-center mb-4">
                   <User className="text-white" size={40} />
                 </div>
               )}
-              <h2 className="text-xl font-semibold text-green-700 mb-2">
+              <h2 className="text-xl font-semibold text-blue-700 mb-2">
                 {profileData.firstname || 'First Name'} {profileData.lastname || 'Last Name'}
               </h2>
               <p className="text-center text-gray-600 max-w-2xl">
@@ -377,17 +377,17 @@ const ProfileInfo: React.FC = () => {
           {/* Education section */}
           <div className="bg-white p-6 rounded-lg shadow-sm relative">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-semibold text-green-700">Education</h3>
-              <button onClick={() => setShowEducationModal(true)} className="text-green-500">
+              <h3 className="text-lg font-semibold text-blue-700">Education</h3>
+              <button onClick={() => setShowEducationModal(true)} className="text-blue-500">
                 <Pencil size={18} />
               </button>
             </div>
             {profileData.education.length > 0 ? (
               <div className="space-y-4 text-lg">
                 {profileData.education.map((edu, index) => (
-                  <div key={index} className="border-l-4 border-green-500 pl-4">
-                    <h4 className="font-medium text-green-700">Institute Name : {edu.institute}</h4>
-                    <p className="text-sm text-gray-600">Degree Name : {edu.degreeName}</p>
+                  <div key={index} className="border-l-4 border-blue-500 pl-4">
+                    <h4 className="font-medium text-blue-700">Institute Name : {edu.institute}</h4>
+                    <p className="text-sm text-gray-600">Degree Name : {edu.deblueame}</p>
                     <p className="text-xs text-gray-500">
                       Duration : {edu.startDate} - {edu.present ? 'Present' : edu.endDate}
                     </p>
@@ -404,15 +404,15 @@ const ProfileInfo: React.FC = () => {
           {/* Professional section */}
           <div className="bg-white p-6 rounded-lg shadow-sm relative">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-semibold text-green-700">Professional</h3>
-              <button onClick={() => setShowProfessionalModal(true)} className="text-green-500">
+              <h3 className="text-lg font-semibold text-blue-700">Professional</h3>
+              <button onClick={() => setShowProfessionalModal(true)} className="text-blue-500">
                 <Pencil size={18} />
               </button>
             </div>
             {profileData.professional.length > 0 ? (
               <div className="space-y-4 text-lg">
                 {profileData.professional.map((prof, index) => (
-                  <div key={index} className="border-l-4 border-green-500 pl-4">
+                  <div key={index} className="border-l-4 border-blue-500 pl-4">
                     {prof.barCouncilNumber && (
                       <p className="text-sm text-gray-600">
                         Bar Council Number : {prof.barCouncilNumber}
@@ -446,16 +446,16 @@ const ProfileInfo: React.FC = () => {
           {/* Experience section */}
           <div className="bg-white p-6 rounded-lg shadow-sm relative">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-semibold text-green-700">Experience</h3>
-              <button onClick={() => setShowExperienceModal(true)} className="text-green-500">
+              <h3 className="text-lg font-semibold text-blue-700">Experience</h3>
+              <button onClick={() => setShowExperienceModal(true)} className="text-blue-500">
                 <Pencil size={18} />
               </button>
             </div>
             {profileData.experience.length > 0 ? (
               <div className="space-y-4 text-lg">
                 {profileData.experience.map((exp, index) => (
-                  <div key={index} className="border-l-4 border-green-500 pl-4">
-                    <h4 className="font-medium text-green-700">Company Name: {exp.companyName}</h4>
+                  <div key={index} className="border-l-4 border-blue-500 pl-4">
+                    <h4 className="font-medium text-blue-700">Company Name: {exp.companyName}</h4>
                     <p className="text-sm text-gray-600">Role : {exp.role}</p>
                     <p className="text-xs text-gray-500">
                     Duration : {exp.startDate} - {exp.present ? 'Present' : exp.endDate}

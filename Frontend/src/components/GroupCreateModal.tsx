@@ -101,7 +101,7 @@ export default function GroupCreateModal({
                   </button>
                   <button
                     type="button"
-                    className="px-4 py-2 text-sm bg-green-500 text-white rounded-md hover:bg-green-600"
+                    className="px-4 py-2 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600"
                     onClick={() => {
                       onCreate(groupName, selectedUsers);
                       onClose();

@@ -1,52 +1,51 @@
-
 const Solutions = () => {
   const solutions = [
     {
       number: "01",
-      title: "Improve Agricultural Practices",
-      description: "Implement advanced agricultural techniques and methodologies through our platform to enhance productivity and sustainability in farming operations."
+      title: "Enhanced Patient Care Coordination",
+      description: "Implement integrated care management systems to streamline patient journeys across healthcare providers, improving treatment outcomes and reducing medical errors."
     },
     {
       number: "02",
-      title: "Facilitate Market Linkages",
-      description: "Create a robust market linkage system to provide farmers with better access to markets, thereby increasing their opportunities for selling produce at fair prices with traceability."
+      title: "Telemedicine Integration",
+      description: "Develop secure virtual care platforms enabling remote consultations, medication management, and continuous patient monitoring for accessible healthcare delivery."
     },
     {
       number: "03",
-      title: "Enable Price Prediction",
-      description: "Develop data-driven models for predicting mandi rates, empowering farmers with insights into market trends to make informed decisions about crop sales."
+      title: "AI-Driven Diagnosis Support",
+      description: "Deploy machine learning models for early disease detection, symptom analysis, and treatment recommendation systems to enhance clinical decision-making."
     },
     {
       number: "04",
-      title: "Enhance Monitoring Capabilities",
-      description: "Implement IoT tech for real-time monitoring of agricultural parameters such as humidity and weather forecasts, enabling proactive management of risks."
+      title: "Remote Patient Monitoring",
+      description: "Utilize IoT-enabled medical devices for real-time tracking of vital signs, medication adherence, and chronic condition management with automated alerts."
     }
   ];
 
   return (
-    <section id="solutions" className="section-padding bg-white">
+    <section id="solutions" className="py-20 bg-white px-24">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="fade-in-section">
-          <h2 className="section-title">
-            Our <span className="gradient-text">Solutions</span>
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Our <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">Healthcare Solutions</span>
           </h2>
-          <p className="section-subtitle">
-            Comprehensive solutions designed to address the challenges faced by farmers and revolutionize agricultural practices
+          <p className="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto">
+            Innovative approaches addressing modern healthcare challenges through technology and patient-centered care
           </p>
         </div>
 
-        <div className="space-y-8 mt-12">
+        <div className="grid md:grid-cols-2 gap-8">
           {solutions.map((solution, index) => (
-            <div key={index} className="fade-in-section">
-              <div className="flex flex-col md:flex-row gap-6 items-start p-6 rounded-xl hover:bg-green-200 transition-colors duration-300">
+            <div key={index} className="group bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className="flex items-start gap-6">
                 <div className="flex-shrink-0">
-                  <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center text-green-700 font-bold text-xl">
+                  <div className="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center text-blue-700 font-bold text-xl group-hover:bg-blue-100 transition-colors">
                     {solution.number}
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold mb-3 text-gray-800">{solution.title}</h3>
-                  <p className="text-gray-600">{solution.description}</p>
+                  <h3 className="text-xl font-semibold mb-2 text-gray-800">{solution.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{solution.description}</p>
                 </div>
               </div>
             </div>

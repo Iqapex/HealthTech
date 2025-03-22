@@ -36,7 +36,7 @@ const VerifyEmail = () => {
                         {error}
                     </div>
                 ) : (
-                    <div className="text-green-500 text-center text-sm">
+                    <div className="text-blue-500 text-center text-sm">
                         {message}
                     </div>
                 )}

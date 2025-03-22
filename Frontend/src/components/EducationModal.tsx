@@ -29,44 +29,44 @@ const EducationModal: React.FC<EducationModalProps> = ({
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg p-6 w-full max-w-md">
-        <h3 className="text-xl font-semibold text-green-700 mb-4 text-center">Education</h3>
+        <h3 className="text-xl font-semibold text-blue-700 mb-4 text-center">Education</h3>
 
         <div className="space-y-4">
           <div>
-            <h4 className="font-medium text-green-700 mb-2">School</h4>
+            <h4 className="font-medium text-blue-700 mb-2">School</h4>
             <div className="space-y-3">
               <input
                 type="text"
                 placeholder="Institute Name"
-                className="w-full p-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full p-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 value={formData.institute}
                 onChange={(e) => onChange({ ...formData, institute: e.target.value })}
               />
               <input
                 type="text"
                 placeholder="Degree Name"
-                className="w-full p-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                value={formData.degreeName}
+                className="w-full p-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value={formData.deblueame}
                 onChange={(e) => onChange({ ...formData, degreeName: e.target.value })}
               />
               <input
                 type="text"
                 placeholder="Course"
-                className="w-full p-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full p-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 value={formData.course}
                 onChange={(e) => onChange({ ...formData, course: e.target.value })}
               />
               <input
                 type="date"
                 placeholder="Start Date"
-                className="w-full p-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full p-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 value={formData.startDate}
                 onChange={(e) => onChange({ ...formData, startDate: e.target.value })}
               />
               <input
                 type="date"
                 placeholder="End Date"
-                className="w-full p-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full p-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 value={formData.endDate}
                 onChange={(e) => onChange({ ...formData, endDate: e.target.value })}
               />
@@ -85,7 +85,7 @@ const EducationModal: React.FC<EducationModalProps> = ({
         <div className="mt-6">
           <button
             onClick={onSubmit}
-            className="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition"
+            className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition"
           >
             Save
           </button>

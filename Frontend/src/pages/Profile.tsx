@@ -67,7 +67,7 @@ export default function Profile() {
                   <h1 className="text-2xl font-bold text-gray-800">{profile.name}</h1>
                   <p className="text-gray-600">{profile.role}</p>
                 </div>
-                <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
+                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
                   Added
                 </span>
               </div>
@@ -87,15 +87,15 @@ export default function Profile() {
 
           <div className="grid grid-cols-3 gap-4 mt-6">
             <div className="text-center">
-              <div className="text-xl font-bold text-green-600">{profile.cases}</div>
+              <div className="text-xl font-bold text-blue-600">{profile.cases}</div>
               <div className="text-sm text-gray-600">Cases</div>
             </div>
             <div className="text-center">
-              <div className="text-xl font-bold text-green-600">{profile.rating}</div>
+              <div className="text-xl font-bold text-blue-600">{profile.rating}</div>
               <div className="text-sm text-gray-600">Rating</div>
             </div>
             <div className="text-center">
-              <div className="text-xl font-bold text-green-600">{profile.experience}</div>
+              <div className="text-xl font-bold text-blue-600">{profile.experience}</div>
               <div className="text-sm text-gray-600">Years</div>
             </div>
           </div>

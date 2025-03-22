@@ -296,7 +296,7 @@ const Messages: React.FC = () => {
                 <h2 className="text-lg font-bold">Contacts</h2>
                 <button
                   onClick={() => setShowCreateGroup(true)}
-                  className="p-1.5 hover:bg-gray-100 rounded-lg text-green-600"
+                  className="p-1.5 hover:bg-gray-100 rounded-lg text-blue-600"
                 >
                   <Users className="w-5 h-5" />
                 </button>
@@ -324,7 +324,7 @@ const Messages: React.FC = () => {
                         {onlineUsers.some(
                           (onlineUser: any) => onlineUser.userId === user._id
                         ) && (
-                          <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-white" />
+                          <div className="absolute bottom-0 right-0 w-3 h-3 bg-blue-500 rounded-full border-2 border-white" />
                         )}
                       </div>
                       <div>
@@ -332,7 +332,7 @@ const Messages: React.FC = () => {
                           {user.firstname} {user.lastname}
                         </p>
                         <p className="text-sm text-gray-500">
-                          {user.isLawyer ? "Vendor" : "Farmer"}
+                          {user.isLawyer ? "Vendor" : "Doctor"}
                         </p>
                       </div>
                     </div>
@@ -361,13 +361,13 @@ const Messages: React.FC = () => {
                         onClick={() => setSelectedConversation(convo._id)}
                         className={`flex items-center gap-3 p-2 rounded-lg cursor-pointer ${
                           selectedConversation === convo._id
-                            ? "bg-green-50"
+                            ? "bg-blue-50"
                             : "hover:bg-gray-100"
                         }`}
                       >
                         {isGroup ? (
-                          <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
-                            <Users className="w-5 h-5 text-green-600" />
+                          <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                            <Users className="w-5 h-5 text-blue-600" />
                           </div>
                         ) : (
                           <div className="relative">
@@ -428,7 +428,7 @@ const Messages: React.FC = () => {
                           <div
                             className={`max-w-[70%] rounded-lg p-3 ${
                               isCurrentUser
-                                ? "bg-green-500 text-white"
+                                ? "bg-blue-500 text-white"
                                 : "bg-gray-100 text-gray-800"
                             }`}
                           >
@@ -476,11 +476,11 @@ const Messages: React.FC = () => {
                           e.key === "Enter" && handleSendMessage()
                         }
                         placeholder="Type a message..."
-                        className="flex-1 p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500"
+                        className="flex-1 p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500"
                       />
                       <button
                         onClick={handleSendMessage}
-                        className="p-2 bg-green-500 text-white rounded-lg hover:bg-green-600 disabled:opacity-50"
+                        className="p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50"
                         disabled={!newMessage.trim()}
                       >
                         <Send className="w-5 h-5" />

@@ -1,48 +1,48 @@
-import { BarChart3, ShieldCheck, Users, Zap } from 'lucide-react';
+import { Stethoscope, Activity, Pill, Brain } from 'lucide-react';
 
 const Features = () => {
   const features = [
     {
-      icon: <BarChart3 size={24} />,
-      title: "Market Linkage",
-      description: "Connect farmers directly with buyers, eliminating middlemen and ensuring fair prices for agricultural produce."
+      icon: <Stethoscope size={24} className="text-blue-600" />,
+      title: "Virtual Consultations",
+      description: "24/7 access to board-certified physicians through secure video conferencing"
     },
     {
-      icon: <ShieldCheck size={24} />,
-      title: "Traceability",
-      description: "Track products from farm to table with blockchain technology, ensuring transparency and building consumer trust."
+      icon: <Activity size={24} className="text-green-600" />,
+      title: "Health Monitoring",
+      description: "Real-time tracking of vital signs with smart device integration"
     },
     {
-      icon: <Zap size={24} />,
-      title: "Price Prediction",
-      description: "Leverage AI and machine learning to forecast market prices, helping farmers make informed decisions."
+      icon: <Pill size={24} className="text-purple-600" />,
+      title: "Digital Pharmacy",
+      description: "Automatic prescription refills and medication delivery service"
     },
     {
-      icon: <Users size={24} />,
-      title: "Agricultural Advisory",
-      description: "Access expert advice from agricultural specialists and AI-powered recommendations for optimal farming practices."
+      icon: <Brain size={24} className="text-red-600" />,
+      title: "AI Diagnostics",
+      description: "Advanced symptom analysis and preliminary diagnosis using AI"
     }
   ];
 
   return (
-    <section id="features" className="section-padding bg-green-50">
+    <section id="services" className="py-16 px-24 bg-blue-50">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="fade-in-section">
-          <h2 className="section-title">
-            Our <span className="gradient-text">Value Proposition</span>
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Our <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">Medical Services</span>
           </h2>
-          <p className="section-subtitle">
-            Implementing better agricultural practices using our Agri-tech platform, empowering farmers with advanced techniques and methodologies
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Comprehensive healthcare solutions combining cutting-edge technology with human expertise
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
-            <div key={index} className="card fade-in-section">
-              <div className="feature-icon">
+            <div key={index} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+              <div className="w-12 h-12 mb-4 rounded-lg bg-blue-50 flex items-center justify-center">
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-gray-800">{feature.title}</h3>
+              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
               <p className="text-gray-600">{feature.description}</p>
             </div>
           ))}

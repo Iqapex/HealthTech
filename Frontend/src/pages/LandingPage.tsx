@@ -4,11 +4,11 @@ import Hero from '../components/Hero';
 import About from '../components/About';
 import Features from '../components/Feature';
 import Solutions from '../components/Solutions';
-import SupplyChain from '../components/SupplyChain';
 import AppDownload from '../components/AppDownload';
 import Team from '../components/Team';
 import Achievements from '../components/Achievements';
 import Footer from '../components/Footer';
+import PatientJourney from '../components/SupplyChain';
 
 
 function LandingPage() {
@@ -41,7 +41,7 @@ function LandingPage() {
       <About />
       <Features />
       <Solutions />
-      <SupplyChain />
+      <PatientJourney />
       <AppDownload />
       <Team />
       <Achievements />
