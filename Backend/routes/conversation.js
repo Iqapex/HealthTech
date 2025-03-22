@@ -17,7 +17,7 @@ conversationRouter.post("/", async (req, res) => {
 });
 
 //create a group conversation
-conversationRouter.post("/group/", async (req, res) => {
+conversationRouter.post("/group", async (req, res) => {
     const newConvo = new Conversation(req.body);
     try {
         const savedConvo = await newConvo.save();
@@ -40,30 +40,24 @@ conversationRouter.get("/:userId", async (req, res) => {
 //get conversation of 2 users
 conversationRouter.get("/find/:firstuserId/:seconduserId", async (req, res) => {
     try {
-        const convo = await Conversation.findOne(
-            {
-                name: "",
-                members: { $all: [req.params.firstuserId, req.params.seconduserId] }
-            });
+        let convo = await Conversation.findOne({
+            name: "",
+            members: { $all: [req.params.firstuserId, req.params.seconduserId] }
+        });
 
         if (!convo) {
             const newConvo = new Conversation({
                 members: [req.params.firstuserId, req.params.seconduserId],
             });
-            try {
-                const savedConvo = await newConvo.save();
-                res.status(200).json(savedConvo);
-            } catch (err) {
-                res.status(500).json(err);
-            }
+            convo = await newConvo.save();
         }
         res.status(200).json(convo);
     } catch (err) {
         res.status(500).json(err);
     }
-})
+});
 
-conversationRouter.delete(`/:id`, async (req, res) => {
+conversationRouter.delete("/:id", async (req, res) => {
     try {
         await Message.deleteMany({ conversationId: req.params.id });
         await Conversation.deleteOne({ _id: req.params.id })
