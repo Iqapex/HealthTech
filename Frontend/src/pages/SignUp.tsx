@@ -1,7 +1,7 @@
 // pages/SignUp.tsx
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Lock, User, Leaf } from 'lucide-react';
+import { Mail, Lock, User, Heart } from 'lucide-react';
 import { useApi } from '../hooks/useApi';
 import { Notification } from '../components/Notification';
 
@@ -59,7 +59,7 @@ export default function SignUp() {
     <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8 bg-blue-50 p-8 mt-12 rounded-xl shadow-lg">
         <div className="flex flex-col items-center">
-          <Leaf className="h-12 w-12 text-blue-600" />
+          <Heart className="h-12 w-12 text-blue-600" />
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign Up</h2>
         </div>
         

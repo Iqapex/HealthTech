@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CheckCircle2, Star, Zap, HeartPulse, BadgeCheck } from 'lucide-react';
+import { CheckCircle2, Star, Zap, HeartPulse, BadgeCheck, Stethoscope, Pill, Ambulance } from 'lucide-react';
 
 const PremiumPage = () => {
   const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
@@ -27,7 +27,7 @@ const PremiumPage = () => {
         amount: orderData.amount,
         currency: orderData.currency,
         name: 'MediCare Pro',
-        description: `${planType} Subscription`,
+        description: `${planType} Health Plan`,
         order_id: orderData.id,
         handler: async (response: any) => {
           const verificationResponse = await fetch('/api/payments/verify-payment', {
@@ -38,7 +38,7 @@ const PremiumPage = () => {
 
           const verificationData = await verificationResponse.json();
           if (verificationData.status === 'success') {
-            alert('Subscription activated successfully!');
+            alert('Health plan activated successfully!');
             // Redirect user or update global state
           }
         },
@@ -65,24 +65,27 @@ const PremiumPage = () => {
       <div className="text-center pt-20 pb-16 px-4">
         <div className="max-w-4xl mx-auto">
           <div className="inline-flex items-center bg-blue-100 px-4 py-2 rounded-full mb-6">
-            <Zap className="w-5 h-5 text-blue-600 mr-2" />
-            <span className="font-medium text-blue-600">Join 5000+ Trusted Doctors Worldwide</span>
+            <HeartPulse className="w-5 h-5 text-blue-600 mr-2" />
+            <span className="font-medium text-blue-600">Trusted by 5000+ Patients Nationwide</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-            Premium AgreTech Plans
+            Premium Healthcare Plans
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Choose the plan that best fits your needs and get instant access to top specialists.
+            Access premium medical care with personalized health solutions and priority services.
           </p>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 pb-20">
         <div className="grid md:grid-cols-3 gap-8">
-          {/* Free Plan */}
+          {/* Basic Plan */}
           <div className="bg-white rounded-2xl p-8 shadow-lg">
             <div className="mb-6">
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">Basic Care</h3>
+              <div className="flex items-center gap-2 mb-4">
+                <Stethoscope className="w-6 h-6 text-blue-600" />
+                <h3 className="text-2xl font-bold text-gray-900">Essential Care</h3>
+              </div>
               <div className="my-6">
                 <span className="text-4xl font-bold text-gray-900">Free</span>
               </div>
@@ -94,9 +97,9 @@ const PremiumPage = () => {
               </button>
             </div>
             <div className="space-y-4">
-              <FeatureItem text="2 Consultations/Month" />
+              <FeatureItem text="2 Doctor Consultations/Month" />
+              <FeatureItem text="Basic Symptom Checker" />
               <FeatureItem text="Email Support" />
-              <FeatureItem text="Basic Health Tracking" />
             </div>
           </div>
 
@@ -107,7 +110,10 @@ const PremiumPage = () => {
                 <BadgeCheck className="w-6 h-6 text-blue-600" />
                 <span className="text-sm font-medium text-blue-600">Most Popular</span>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">Premium Care</h3>
+              <div className="flex items-center gap-2 mb-4">
+                <Ambulance className="w-6 h-6 text-blue-600" />
+                <h3 className="text-2xl font-bold text-gray-900">Premium Care</h3>
+              </div>
               <div className="my-6">
                 <span className="text-4xl font-bold text-gray-900">₹299</span>
                 <span className="text-gray-500 ml-2">/ month</span>
@@ -121,9 +127,9 @@ const PremiumPage = () => {
               </button>
             </div>
             <div className="space-y-4">
-              <FeatureItem text="10 Consultations/Month" checked />
-              <FeatureItem text="24/7 Priority Support" checked />
-              <FeatureItem text="Advanced Analytics" checked />
+              <FeatureItem text="10 Doctor Consultations/Month" checked />
+              <FeatureItem text="24/7 Medical Support" checked />
+              <FeatureItem text="Priority Appointment Booking" checked />
             </div>
           </div>
 
@@ -134,10 +140,9 @@ const PremiumPage = () => {
             </div>
             <div className="mb-6">
               <div className="flex items-center gap-2 mb-4">
-                <HeartPulse className="w-6 h-6 text-white" />
-                <span className="text-sm font-medium">Best Value</span>
+                <Pill className="w-6 h-6 text-white" />
+                <h3 className="text-2xl font-bold">Comprehensive Care</h3>
               </div>
-              <h3 className="text-2xl font-bold mb-2">Annual Care</h3>
               <div className="my-6">
                 <span className="text-4xl font-bold">₹2,999</span>
                 <span className="text-blue-300 ml-2">/ year</span>
@@ -152,8 +157,8 @@ const PremiumPage = () => {
             </div>
             <div className="space-y-4">
               <FeatureItem text="Unlimited Consultations" checked white />
-              <FeatureItem text="VIP Priority Queue" checked white />
-              <FeatureItem text="Personal Health Assistant" checked white />
+              <FeatureItem text="VIP Specialist Access" checked white />
+              <FeatureItem text="Personal Health Manager" checked white />
             </div>
           </div>
         </div>

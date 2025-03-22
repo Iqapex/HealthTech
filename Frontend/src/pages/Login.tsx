@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Mail, Lock, Leaf } from "lucide-react";
+import { Mail, Lock, Heart } from "lucide-react";
 import { useApi } from "../hooks/useApi"; // Import the useApi hook
 
 export default function Login({
@@ -47,7 +47,7 @@ export default function Login({
     <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8 bg-blue-50 p-8 md:mt-8 rounded-xl shadow-lg">
         <div className="flex flex-col items-center">
-          <Leaf className="h-12 w-12 text-blue-600" />
+          <Heart className="h-12 w-12 text-blue-600" />
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             Log In
           </h2>
