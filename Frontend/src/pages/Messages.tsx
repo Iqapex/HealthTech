@@ -332,7 +332,7 @@ const Messages: React.FC = () => {
                           {user.firstname} {user.lastname}
                         </p>
                         <p className="text-sm text-gray-500">
-                          {user.isLawyer ? "Vendor" : "Doctor"}
+                          {user.isLawyer ? "Doctor" : "Patient"}
                         </p>
                       </div>
                     </div>
